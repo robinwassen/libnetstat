@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include "libnetstat.h"
-
 #include <stdio.h>
+
+#include "libnetstat.h"
 
 void printV4(struct in_addr addr) {
   char ipv4Addr[INET_ADDRSTRLEN];
@@ -31,7 +31,7 @@ void printV6(struct in_addr6 addr) {
 }
 
 void printFriendlyProtocolName(enum Protocol proto) {
-  switch(proto) {
+  switch (proto) {
     case TCPv4:
       printf("%-10s ", "TCPv4");
       break;
@@ -55,8 +55,7 @@ int main() {
     "remote_address",
     "remote_port",
     "pid",
-    "offload_state"
-  );
+    "offload_state");
 
   size_t connection_table_size;
   struct SocketConnection *connection_table = GetActiveConnections(&connection_table_size);
@@ -71,8 +70,7 @@ int main() {
       printf("%-11d ", sc->local_port);
       printV6(sc->remote_address_v6);
       printf("%-11d ", sc->remote_port);
-    }
-    else {
+    } else {
       printV4(sc->local_address);
       printf("%-11d ", sc->local_port);
       printV4(sc->remote_address);

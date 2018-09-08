@@ -18,6 +18,9 @@
  *    https://github.com/Asido/SystemMonitor/blob/master/SystemMonitor/Network/bsd_var.h
  */
 
+#ifndef SRC_LIBNETSTAT_H_
+#define SRC_LIBNETSTAT_H_
+
 enum Protocol {
   TCPv4 = 0,
   TCPv6 = 1,
@@ -42,3 +45,5 @@ static const struct in_addr   EmptyAddr4;
 static const struct in_addr6  EmptyAddr6;
 
 struct SocketConnection *GetActiveConnections(size_t *size);
+
+#endif  // SRC_LIBNETSTAT_H_
