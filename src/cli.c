@@ -15,6 +15,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "libnetstat.h"
 
@@ -24,7 +25,7 @@ void printV4(struct in_addr addr) {
   printf("%-39s ", ipv4Addr);
 }
 
-void printV6(struct in_addr6 addr) {
+void printV6(struct in6_addr addr) {
   char ipv6Addr[INET6_ADDRSTRLEN];
   inet_ntop(AF_INET6, &(addr), ipv6Addr, INET6_ADDRSTRLEN);
   printf("%-39s ", ipv6Addr);

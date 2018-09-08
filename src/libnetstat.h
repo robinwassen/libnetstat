@@ -21,6 +21,19 @@
 #ifndef SRC_LIBNETSTAT_H_
 #define SRC_LIBNETSTAT_H_
 
+#ifdef WIN32
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <iphlpapi.h>
+
+#pragma comment(lib, "iphlpapi.lib")
+#pragma comment(lib, "ws2_32.lib")
+#elif __linux__
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#endif
+
 enum Protocol {
   TCPv4 = 0,
   TCPv6 = 1,
@@ -32,17 +45,17 @@ struct SocketConnection {
   enum Protocol    protocol;
   int              state;
   struct in_addr   local_address;
-  struct in_addr6  local_address_v6;
+  struct in6_addr  local_address_v6;
   int              local_port;
   struct in_addr   remote_address;
-  struct in_addr6  remote_address_v6;
+  struct in6_addr  remote_address_v6;
   int              remote_port;
   int              pid;
   int              offload_state;
 };
 
 static const struct in_addr   EmptyAddr4;
-static const struct in_addr6  EmptyAddr6;
+static const struct in6_addr  EmptyAddr6;
 
 struct SocketConnection *GetActiveConnections(size_t *size);
 
