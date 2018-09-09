@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 struct SocketConnection *GetActiveConnections(size_t *size) {
   // TCP, IPv4
